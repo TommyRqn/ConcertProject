@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des groupes{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-5">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-primary mt-5">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Nom</th>
+                        <th scope="col" class="text-center">Style</th>
+                        <th scope="col" class="text-center">Image</th>
+                        <th scope="col" class="text-center">Date de création</th>
+                        <th scope="col" class="text-center">Dernier album sorti</th>
+                        <th scope="col" class="text-center">Modifier</th>
+                        <th scope="col" class="text-center">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for band in bands %}
+                        <tr>
+                            <td class="text-center">{{ band.name }}</td>
+                            <td class="text-center">{{ band.style }}</td>
+                            <td class="text-center"><img src="{{ asset("images/#{band.picture}") }}" class="card-img-top" alt="{{band.name}}"></td>
+                            <td class="text-center">{{ band.yearOfCreation | date("d/m/y") }}</td>
+                            <td class="text-center">{{ band.lastAlbumName }}</td>
+                            <td class="text-center"><a href="/bands/edit/{{band.id}}" class="btn btn-primary">Modifier</a></td>
+                            <td class="text-center"><a href="/bands/delete/{{band.id}}" class="btn btn-danger">Supprimer</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="/bands/create">Créer un groupe</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

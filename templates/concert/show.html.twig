@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Information sur le concert{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <h1 class="text-center">Concert :</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h1>{{ concert.tourname }}</h1>
+            <a href="/band/{{concert.band.id}}">
+                <p>Groupe : {{ concert.band.name }}</p>
+            </a>
+            <p>Date : {{ concert.date | date("d/m/Y") }}</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        <p>Adresse : {{ concert.hall.address }}, {{ concert.hall.city }}</p>
+    </div>
+</footer>
+{% endblock %}

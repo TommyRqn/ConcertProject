@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des groupes{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <h1 class="text-center mb-3">Voici la liste des groupes :</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        {% for band in bands %}
+            <div class="col">
+                <a href="/band/{{band.id}}">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ asset("images/#{band.picture}") }}" class="card-img-top" alt="{{band.name}}">
+                        <div class="card-body">
+                            <p class="card-text">{{ band.name }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

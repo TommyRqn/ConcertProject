@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Information du groupe{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <h1 class="text-center">Le groupe {{band.name}} :</h1>
+            <p class="text-center">Celui-ci est composé de {{band.members | length}} membre(s), qui sont :</p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        {% for member in band.members %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset("images/#{member.picture}") }}" class="card-img-top" alt="{{member.name}}">
+                    <div class="card-body">
+                        <h4>{{ member.firstname }} {{ member.name }}</h4>
+                        <p class="card-text">Né(e) le {{ member.birthdate | date("d/m/Y") }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{ member.job }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h1 class="text-center">Leurs prochains concerts :</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        {% for concert in futureConcerts %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <a href="/concert/{{concert.id}}">
+                            <h4>{{ concert.tourname }}</h4>
+                        </a>
+                        <p class="card-text">Date : {{ concert.date | date("d/m/Y") }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p>Adresse : {{ concert.hall.address }}, {{ concert.hall.city }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

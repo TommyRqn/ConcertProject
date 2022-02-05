@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des concerts{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-5">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-primary mt-5">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Groupe</th>
+                        <th scope="col" class="text-center">Tournée</th>
+                        <th scope="col" class="text-center">Date</th>
+                        <th scope="col" class="text-center">Modifier</th>
+                        <th scope="col" class="text-center">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for concert in concerts %}
+                        <tr>
+                            <td class="text-center">{{ concert.band.name }}</td>
+                            <td class="text-center">{{ concert.tourname }}</td>
+                            <td class="text-center">{{ concert.date | date("d/m/y") }}</td>
+                            <td class="text-center"><a href="/concert/edit/{{concert.id}}" class="btn btn-primary">Modifier</a></td>
+                            <td class="text-center"><a href="/concert/delete/{{concert.id}}" class="btn btn-danger">Supprimer</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="/concert/create">Créer un nouveau concert</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

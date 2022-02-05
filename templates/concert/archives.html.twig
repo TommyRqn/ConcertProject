@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Archives{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <h1 class="text-center mb-3">Voici la liste des concerts déjà passés :</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        {% for archive in concerts %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h1>{{ archive.tourname }}</h1>
+                        <p class="card-text">Groupe{{ archive.band.name }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p>Date : {{ archive.date | date("d/m/Y") }}</p>
+                        <hr>
+                        <p>Adresse : {{ archive.hall.address }}, {{ archive.hall.city }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

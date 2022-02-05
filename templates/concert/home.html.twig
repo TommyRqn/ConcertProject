@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <h1 class="text-center mb-3">Voici la liste des prochains concerts :</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        {% for incoming in concerts %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <a href="/concert/{{incoming.id}}">
+                            <h1>{{ incoming.tourname }}</h1>
+                        </a>
+                        <p class="card-text">Groupe : {{ incoming.band.name }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p>Date : {{ incoming.date | date("d/m/Y") }}</p>
+                        <hr>
+                        <p>Adresse : {{ incoming.hall.address }}, {{ incoming.hall.city }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

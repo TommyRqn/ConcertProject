@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des concerts{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-5">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-primary mt-5">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Groupe</th>
+                        <th scope="col" class="text-center">Nom</th>
+                        <th scope="col" class="text-center">Prénom</th>
+                        <th scope="col" class="text-center">Poste</th>
+                        <th scope="col" class="text-center">Date de naissance</th>
+                        <th scope="col" class="text-center">Image</th>
+                        <th scope="col" class="text-center">Modifier</th>
+                        <th scope="col" class="text-center">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                        <tr>
+                            <td class="text-center">{{ member.band.name }}</td>
+                            <td class="text-center">{{ member.name }}</td>
+                            <td class="text-center">{{ member.firstname }}</td>
+                            <td class="text-center">{{ member.job }}</td>
+                            <td class="text-center">{{ member.birthdate | date("d/m/y") }}</td>
+                            <td class="text-center"><img src="{{ asset("images/#{member.picture}") }}" class="card-img-top" alt="{{member.name}}"></td>
+                            <td class="text-center"><a href="/member/edit/{{member.id}}" class="btn btn-primary">Modifier</a></td>
+                            <td class="text-center"><a href="/member/delete/{{member.id}}" class="btn btn-danger">Supprimer</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="/member/create">Créer un nouveau membre</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
