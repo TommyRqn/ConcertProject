@@ -15,15 +15,17 @@ class MemberFixture extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $member = new Member();
-        $member->setName('Requena')
-                ->setFirstName('Tommy')
-                ->setJob('Guitariste')
-                ->setBirthDate(\DateTime::createFromFormat('d-m-Y', '17-12-2001'))
-                ->setPicture('test.png');
-        $member->setBand($this->getReference(BandFixture::BAND_REFERENCE));
+        for ($i=0; $i<10; $i++){
+            $member = new Member();
+            $member->setName('Requena'.$i)
+                    ->setFirstName('Tommy'.$i)
+                    ->setJob('Guitariste')
+                    ->setBirthDate(\DateTime::createFromFormat('d-m-Y', '17-12-2001'))
+                    ->setPicture('test.png');
+            $member->setBand($this->getReference(BandFixture::BAND_REFERENCE));
 
-        $manager->persist($member);
+            $manager->persist($member);
+        }
 
         $this->addReference(self::MEMBER_REFERENCE, $member);
         $manager->flush();

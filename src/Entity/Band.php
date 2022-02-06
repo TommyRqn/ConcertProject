@@ -35,12 +35,12 @@ class Band
     private $picture;
 
     /**
-     * @ORM\OneToMany(targetEntity=Member::class, mappedBy="band")
+     * @ORM\OneToMany(targetEntity=Member::class, mappedBy="band", orphanRemoval=true)
      */
     private $members;
 
     /**
-     * @ORM\OneToMany(targetEntity=Concert::class, mappedBy="band")
+     * @ORM\OneToMany(targetEntity=Concert::class, mappedBy="band", orphanRemoval=true)
      */
     private $concerts;
 

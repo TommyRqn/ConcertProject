@@ -10,20 +10,23 @@
         </div>
     </div>
     <div class="row mt-5">
-        {% for archive in concerts %}
-            <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h1>{{ archive.tourname }}</h1>
-                        <p class="card-text">Groupe{{ archive.band.name }}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <p>Date : {{ archive.date | date("d/m/Y") }}</p>
-                        <hr>
-                        <p>Adresse : {{ archive.hall.address }}, {{ archive.hall.city }}</p>
+        {% for year, archive in concerts %}
+            <h1>{{ year }} :</h1>
+            {% for concert in archive %}
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h1>{{ concert.tourname }}</h1>
+                            <p class="card-text">Groupe{{ concert.band.name }}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <p>Date : {{ concert.date | date("d/m/Y") }}</p>
+                            <hr>
+                            <p>Adresse : {{ concert.hall.address }}, {{ concert.hall.city }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         {% endfor %}
     </div>
 </div>

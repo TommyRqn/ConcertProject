@@ -27,7 +27,6 @@ class ConcertController extends AbstractController
         foreach($allConcerts as $concert){
             if($concert->getDate() > $currentDate){
                 $incomingConcerts[] = $concert;
-                dump($concert);
             }
         }
 
@@ -76,7 +75,7 @@ class ConcertController extends AbstractController
 
         foreach($allConcerts as $concert){
             if($concert->getDate() < $currentDate){
-                $pastConcerts[] = $concert;
+                $pastConcerts[$concert->getDate()->format("Y")][] = $concert;
             }
         }
 

@@ -18,13 +18,15 @@ class ConcertFixture extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        $concert = new Concert();
-        $concert->setDate(\DateTime::createFromFormat('d-m-Y', '15-08-2022'))
-                ->setTourName('Tournée');
-        $concert->setHall($this->getReference(HallFixture::HALL_REFERENCE));
-        $concert->setBand($this->getReference(BandFixture::BAND_REFERENCE));
+        for ($i=0; $i<10; $i++){
+            $concert = new Concert();
+            $concert->setDate(\DateTime::createFromFormat('d-m-Y', '15-08-202'.$i))
+                    ->setTourName('Tournée');
+            $concert->setHall($this->getReference(HallFixture::HALL_REFERENCE));
+            $concert->setBand($this->getReference(BandFixture::BAND_REFERENCE));
 
-        $manager->persist($concert);
+            $manager->persist($concert);
+        }
 
         $this->addReference(self::CONCERT_REFERENCE, $concert);
         $manager->flush();
