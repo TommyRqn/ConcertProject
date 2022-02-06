@@ -19,6 +19,11 @@
         <a class="nav-item nav-link" href="/login">Connexion</a>
         <a class="nav-item nav-link" href="/register">Inscription</a>
       {% endif %}
+      {% for locale in locales %}
+        {% if locale != app.request.locale %}
+          <a class="nav-item nav-link" href="{{ path('change_locale',{'locale': locale}) }}">{{ locale }}</a>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </nav>

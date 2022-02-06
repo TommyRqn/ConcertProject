@@ -19,17 +19,18 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Prénom'
+                'label' => 'E-mail'
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'Prénom'
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Prénom'
+                'label' => 'Nom de famille'
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => 'Mot de passe clair',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -41,7 +42,7 @@ class UserType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('save', SubmitType::class, [
+            ->add('Enregistrer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])
         ;

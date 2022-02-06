@@ -87,7 +87,7 @@ class ConcertController extends AbstractController
 
     /**
      * Create concert entity
-     * @Route("/concert/create", name="concert_create")
+     * @Route("/concerts/create", name="concert_create")
      * @isGranted("ROLE_ADMIN")
      */
     public function createConcert(Request $request): Response
